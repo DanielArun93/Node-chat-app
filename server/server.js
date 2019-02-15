@@ -9,7 +9,7 @@ var { stringCheck } = require('./utils/validation');
 const { generateMessage, generateLocationMessage } = require('./utils/message');
 var { Users } = require('./utils/users');
 const port = process.env.PORT || 3000;
-
+var moment = require('moment');
 var app = express();
 var users = new Users();
 var server = http.createServer(app);
@@ -19,6 +19,7 @@ app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
     console.log("New user connected!");
+    console.log('moment',moment().format('h:mm:ss a'));
     socket.on('join', (params, callback) => {
         if (!stringCheck(params.name) || !stringCheck(params.room)) {
             return callback("Name and Room name is required!...");
