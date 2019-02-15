@@ -10,10 +10,11 @@ var generateMessage = (from, text) => {
     }
 }
 var generateLocationMessage = (from, latitude, longitude) => {
+    var updateDate = new Date();
     return {
         from,
         url: `https://www.google.com/maps?q=${latitude},${longitude}`,
-        completedAt: date.format('h:mm:ss a')
+        completedAt: moment(updateDate).format('h:mm:ss a')
     }
 }
 
